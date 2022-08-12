@@ -10,10 +10,4 @@ export default class CurrencyExchange{
     } catch(error) {
       return error.message; //not showing in the dom because user has no interaction with this call
     }
-
-  
-  
-
   }
-
-
