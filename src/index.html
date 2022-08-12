@@ -7,6 +7,32 @@
     <title>currency exchange</title>
   </head>
   <body>
-    <p>Get the best rates here</p>
+
+    <!--Header Box-->
+    <div class = "container">
+      <div class = "header-box">
+        <p>get the best rates here through our exclusive members only currency exchange platform</p>
+      </div>
+      <div class = "currency-form-container-box"> 
+
+         <!--Convert Form-->
+        <div class = "convertForm">
+          <form id = "conversionForm">
+            <label> From: 
+              <select id = "USD">USD</select>
+            </label> 
+            <label>To: 
+              <select id = "JPY">JPY</select> 
+            </label>
+            <label>Amount:
+              <input id="amount" type="number" min="0">
+            </label> 
+            <button type="submit" class="submitButton" id="submitButton">Convert</button>
+          </form>
+        </div>
+      </div>
+
+      <!--Output Area-->
+    </div>
   </body>
 </html>
