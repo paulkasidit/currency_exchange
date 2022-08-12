@@ -27,7 +27,8 @@
     "webpack-dev-server": "^4.10.0"
   },
   "dependencies": {
-    "bootstrap": "^4.5.3"
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.6.0"
   },
   "repository": {
     "type": "git",

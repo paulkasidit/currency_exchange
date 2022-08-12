@@ -1,4 +1,4 @@
-export default class CurrencyExchange{
+export default class usdExchangeService{
 
   static async getRatesForUSD(){
     try{
