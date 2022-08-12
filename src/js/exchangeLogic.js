@@ -7,4 +7,8 @@ export default class exchangeProfile {
     this.currentExchangeRate = 0; 
   }
 
+  handleConversion(response, targetCurrency, usdAmountRequestedToBeConverted ){
+    return response.conversion_rates[targetCurrency] * usdAmountRequestedToBeConverted; 
+  }
+
 }
