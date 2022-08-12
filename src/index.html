@@ -19,10 +19,18 @@
         <div class = "convertForm">
           <form id = "conversionForm">
             <label> From: 
-              <select id = "USD">USD</select>
+              <select name = "USD" id = "USD">
+                <option value = "USD">USD</option>
+              </select>
             </label> 
             <label>To: 
-              <select id = "JPY">JPY</select> 
+              <select name = "targetCurrency" id = "targetCurrency">
+                <option value = "EUR">Euro</option>
+                <option value = "GBP">Pounds</option>
+                <option value = "SGD">Singapore Dollars</option>
+                <option value = "JPY">Japanese Yen</option>
+                <option value = "CNY">Chinese Yuan</option>
+              </select>
             </label>
             <label>Amount:
               <input id="amount" type="number" min="0">
@@ -33,6 +41,12 @@
       </div>
 
       <!--Output Area-->
+      <div class = "output-area">
+        <br>
+        <h2>Best offer today is:</h2>
+        <p id = "convertedAmount"></p><p id = "currencyID"></p>
+        <p>Call (800)-186-1866 to lock in and secure this rate.</p>
+      </div> 
     </div>
   </body>
 </html>
