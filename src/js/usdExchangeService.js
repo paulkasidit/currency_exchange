@@ -8,6 +8,5 @@ export default class usdExchangeService{
       }
       return await response.json();
     } catch(error) {
-      return error.message; //not showing in the dom because user has no interaction with this call
-    }
+      return error.message; 
   }
