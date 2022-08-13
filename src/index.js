@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import exchangeProfile from ./js/exchangeLogic.js;
-import usdExchangeService from usdExchangeService.js; 
+import exchangeProfile from './js/exchangeLogic.js';
+import usdExchangeService from './js/exchangeLogic.js'; 
 
 //UI Logic 
 
