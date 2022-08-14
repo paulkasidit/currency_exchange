@@ -10,3 +10,5 @@ export default class usdExchangeService{
     } catch(error) {
       return error.message; 
   }
+}
+}
