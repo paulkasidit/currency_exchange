@@ -23,25 +23,29 @@
                 <option value = "USD">USD</option>
               </select>
             </label> 
-            <label>To: 
-              <select name = "targetCurrency" id = "targetCurrency">
-                <option value = "EUR">Euro</option>
-                <option value = "GBP">Pounds</option>
-                <option value = "SGD">Singapore Dollars</option>
-                <option value = "JPY">Japanese Yen</option>
-                <option value = "CNY">Chinese Yuan</option>
-              </select>
-            </label>
-            <label>Amount:
-              <input id="amount" type="number" min="0">
-            </label> 
+            <div id = "targetCurrency">
+              <label>To: 
+                <select name = "targetCurrency" id = "targetCurrency">
+                  <option value = "EUR">Euro</option>
+                  <option value = "GBP">Pounds</option>
+                  <option value = "SGD">Singapore Dollars</option>
+                  <option value = "JPY">Japanese Yen</option>
+                  <option value = "CNY">Chinese Yuan</option>
+                </select>
+              </label>
+            </div>
+            <div id = "amount">
+              <label>Amount:
+                <input id="amount" type="number" min="0">
+              </label> 
+            </div>
             <button type="submit" class="submitButton" id="submitButton">Convert</button>
           </form>
         </div>
       </div>
 
       <!--Output Area-->
-      <div class = "output-area">
+      <div id = "output-area">
         <br>
         <h2>Best offer today is:</h2>
         <p id = "convertedAmount"></p><p id = "currencyID"></p>

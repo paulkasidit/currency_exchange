@@ -10,8 +10,16 @@
     "jquery": true,
     "node": true
   },
+
   "rules": {
     "semi": 1,
-    "indent": ["warn", 2],
-    "no-console": "warn"
+    "indent": [
+      "warn",
+      2
+    ],
+    "no-console": "warn",
+    "no-undef": "warn",
+    "no-unused-vars": "warn"
   }
+  
+}

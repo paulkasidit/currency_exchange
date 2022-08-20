@@ -1,14 +1,14 @@
-export default class usdExchangeService{
-
-  static async getRatesForUSD(){
-    try{
-      const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`);
-      if(!response.ok){
-        throw Error(response.statusText);
-      }
-      return await response.json();
-    } catch(error) {
-      return error.message; 
+export default class usdExchangeService {
+  static getRatesForUSD() {
+    return fetch(`https://v6.exchangerate-api.com/v6/3d0b2a6c62d381c15ac69a81/latest/USD`)
+      .then(function(response) {
+        if(!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch(function(error) {
+        return error;
+      });
   }
-}
 }
