@@ -28,6 +28,11 @@ function generateConversion(event) {
       } else {
         newExchangeRequest.currentExchangeRate = 0; 
       }});
+  
+  let totalArea = document.getElementById("output-area"); 
+  totalArea.removeAttribute("style");
+
+  document.getElementById('convertedAmount').innerText =  newExchangeRequest;
 
   return newExchangeRequest;
 }
