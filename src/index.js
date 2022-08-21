@@ -1,4 +1,4 @@
-import exchangeProfile from './js/exchangeLogic.js';
+import exchangeProfile from './js/exchangeProfile.js';
 import usdExchangeService from './js/usdExchangeService.js';
 
 //Business Logic  
@@ -7,32 +7,36 @@ function generateConversion(event) {
   event.preventDefault(); 
 
   let newExchangeRequest; 
-  const time = new Date(); 
   const amount =  document.getElementById('amount').value;
-  const targetCurrency = document.getElementById('targetCurrency');
+  const targetCurrency = document.getElementById('targetCurrency').value;
+
 
   usdExchangeService.getRatesForUSD()
-    .then(function(response){
-      newExchangeRequest = new exchangeProfile(time, amount, targetCurrency, response);
+    .then(function(usdExchangeRates){
+      
+      newExchangeRequest = new exchangeProfile(amount, targetCurrency);
 
+      let currentRateForUSD; 
       if (targetCurrency === 'EUR'){
-        newExchangeRequest.currentExchangeRate = response.conversion_rates['EUR']; 
+        currentRateForUSD = usdExchangeRates['EUR']; 
       } else if (targetCurrency === 'GBP'){
-        newExchangeRequest.currentExchangeRate = response.conversion_rates['GBP'] ; 
+        currentRateForUSD = usdExchangeRates['GBP'] ; 
       } else if (targetCurrency === 'SGD'){
-        newExchangeRequest.currentExchangeRate = response.conversion_rates['SGD'] ; 
+        currentRateForUSD = usdExchangeRates['SGD'] ; 
       } else if (targetCurrency === 'JPY'){
-        newExchangeRequest.currentExchangeRate = response.conversion_rates['JPY'] ; 
+        currentRateForUSD = usdExchangeRates['JPY'] ; 
       } else if (targetCurrency === 'CNY'){
-        newExchangeRequest.currentExchangeRate = response.conversion_rates['CNY'] ; 
+        currentRateForUSD = usdExchangeRates['CNY'] ; 
       } else {
-        newExchangeRequest.currentExchangeRate = 0; 
-      }});
+        currentRateForUSD = 0; 
+      }
+      return currentRateForUSD;
+    });
   
   let totalArea = document.getElementById("output-area"); 
   totalArea.removeAttribute("style");
 
-  document.getElementById('convertedAmount').innerText =  newExchangeRequest;
+  document.getElementById('convertedAmount').innerText =  exchangeProfile.handleConversion(amount, currentRateForUSD);
 
   return newExchangeRequest;
 }

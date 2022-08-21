@@ -1,13 +1,13 @@
 export default class exchangeProfile {  
 
-  constructor(time, usdAmountRequestedToBeConverted, targetCurrency, currentExchangeRate) {  
-    this.date = time; 
+  constructor(usdAmountRequestedToBeConverted, targetCurrency) {  
     this.usdAmountRequestedToBeConverted = parseInt(usdAmountRequestedToBeConverted); 
     this.targetCurrency = targetCurrency; 
-    this.currentExchangeRate = 0; 
+    console.log(targetCurrency); 
+    console.log(usdAmountRequestedToBeConverted);
   }
 
-  handleConversion(usdAmountRequestedToBeConverted, currentExchangeRate ){
+  handleConversion(usdAmountRequestedToBeConverted, currentExchangeRate){
     return currentExchangeRate * usdAmountRequestedToBeConverted; 
   }
 
