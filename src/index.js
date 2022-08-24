@@ -11,39 +11,41 @@ function generateConversion(event) {
   const targetCurrency = document.getElementById('targetCurrency').value;
 
 
-  usdExchangeService.getRatesForUSD()
-    .then(function(usdExchangeRates){
+  let data = (usdExchangeService.getRatesForUSD());
+  console.log("CCCCCCCCCCC", data.conversion_rates);
+    // .then(function(usdExchangeRates){
       
-      newExchangeRequest = new exchangeProfile(amount, targetCurrency);
+    //   newExchangeRequest = new exchangeProfile(amount, targetCurrency);
 
-      let currentRateForUSD; 
-      if (targetCurrency === 'EUR'){
-        currentRateForUSD = usdExchangeRates['EUR']; 
-      } else if (targetCurrency === 'GBP'){
-        currentRateForUSD = usdExchangeRates['GBP'] ; 
-      } else if (targetCurrency === 'SGD'){
-        currentRateForUSD = usdExchangeRates['SGD'] ; 
-      } else if (targetCurrency === 'JPY'){
-        currentRateForUSD = usdExchangeRates['JPY'] ; 
-      } else if (targetCurrency === 'CNY'){
-        currentRateForUSD = usdExchangeRates['CNY'] ; 
-      } else {
-        currentRateForUSD = 0; 
-      }
-      return currentRateForUSD;
-    });
+    //   let currentRateForUSD; 
+    //   if (targetCurrency === 'EUR'){
+    //     currentRateForUSD = usdExchangeRates['EUR']; 
+    //   } else if (targetCurrency === 'GBP'){
+    //     currentRateForUSD = usdExchangeRates['GBP'] ; 
+    //   } else if (targetCurrency === 'SGD'){
+    //     currentRateForUSD = usdExchangeRates['SGD'] ; 
+    //   } else if (targetCurrency === 'JPY'){
+    //     currentRateForUSD = usdExchangeRates['JPY'] ; 
+    //   } else if (targetCurrency === 'CNY'){
+    //     currentRateForUSD = usdExchangeRates['CNY'] ; 
+    //   } else {
+    //     currentRateForUSD = 0; 
+    //   }
+    //   return currentRateForUSD;
+    // });
+    // console.log("AAAAAAAAAA", data);
   
   let totalArea = document.getElementById("output-area"); 
   totalArea.removeAttribute("style");
 
-  document.getElementById('convertedAmount').innerText =  exchangeProfile.handleConversion(amount, currentRateForUSD);
+  // document.getElementById('convertedAmount').innerText =  exchangeProfile.handleConversion(amount, currentRateForUSD);
 
   return newExchangeRequest;
 }
 
 window.addEventListener("load", function() {
 
-  event.preventDefault(); 
+  // event.preventDefault(); 
 
   let outputArea = document.getElementById("output-area"); 
   outputArea.style.display = "none";
