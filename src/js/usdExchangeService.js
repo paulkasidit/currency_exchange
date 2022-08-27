@@ -3,7 +3,7 @@ export default class usdExchangeService{
       try{
 
       const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`);
-      //
+
       const jsonResponse = await response.json(); 
 
       if (!response.ok){
@@ -18,6 +18,3 @@ export default class usdExchangeService{
   }
 }
 
-//return jsonified response only, save whole variable as data 
-// write function that uses data as the only variable, access conversion rates from there 
-// 
