@@ -1,43 +1,49 @@
 import exchangeProfile from './js/exchangeProfile.js';
 import usdExchangeService from './js/usdExchangeService.js';
-
 //Business Logic  
-function generateConversion(event) {
-  
-  event.preventDefault(); 
+
+async function generateConversion(event){
+  event.preventDefault();  
 
   let newExchangeRequest; 
+  let newUSDRate = await usdExchangeService.getRatesForUSD(); 
   const amount =  document.getElementById('amount').value;
-  const targetCurrency = document.getElementById('targetCurrency').value;
+  const targetCurrency = document.getElementById('targetCurrency').value; 
 
+  let currentRateForUSD = getCurrencyRate(targetCurrency, newUSDRate); 
 
-  let data = usdExchangeService.getRatesForUSD()
-    .then(function(usdExchangeRates){
-      
-      newExchangeRequest = new exchangeProfile(amount, targetCurrency);
+  console.log(targetCurrency);
+  console.log(newUSDRate)
+  console.log(currentRateForUSD); 
 
-      let currentRateForUSD; 
-      if (targetCurrency === 'EUR'){
-        currentRateForUSD = usdExchangeRates['EUR']; 
-      } else if (targetCurrency === 'GBP'){
-        currentRateForUSD = usdExchangeRates['GBP'] ; 
-      } else if (targetCurrency === 'SGD'){
-        currentRateForUSD = usdExchangeRates['SGD'] ; 
-      } else if (targetCurrency === 'JPY'){
-        currentRateForUSD = usdExchangeRates['JPY'] ; 
-      } else if (targetCurrency === 'CNY'){
-        currentRateForUSD = usdExchangeRates['CNY'] ; 
-      } else {
-        currentRateForUSD = 0; 
-      }
+  newExchangeRequest = new exchangeProfile(amount,targetCurrency); 
 
-      document.getElementById('convertedAmount').innerText =  ((newExchangeRequest.handleConversion(amount,currentRateForUSD)).toFixed(2) + " " + targetCurrency);
-      return currentRateForUSD;
-    });
-  
+  if (currentRateForUSD === undefined){
+    document.getElementById('convertedAmount').innerText = "Please enter a supported currency.";
+  } else if (currentRateForUSD > 0){
+    document.getElementById('convertedAmount').innerText = ((newExchangeRequest.handleConversion(amount,currentRateForUSD)).toFixed(2)) + " " + targetCurrency;
+  } else {
+    document.getElementById('convertedAmount').innerText = printError(newUSDRate);
+  }
+
   let totalArea = document.getElementById("output-area"); 
   totalArea.removeAttribute("style");
 }
+
+function printError(error) {
+  return `${error}`;
+}
+
+function getCurrencyRate(targetCurrency,response){ 
+  let rate;
+  for (const[key,value] of Object.entries(response)){
+    if (targetCurrency === key){
+      rate = value; 
+      return rate; 
+    } else {
+      rate = 0; 
+  }
+}}
 
 window.addEventListener("load", function() {
 
@@ -47,6 +53,3 @@ window.addEventListener("load", function() {
   const form  = document.getElementById("conversionForm"); 
   form.addEventListener("submit", generateConversion);
 });
-
-
-
