@@ -7,14 +7,17 @@ function printError(error) {
 
 function getCurrencyRate(targetCurrency,response){ 
   let rate;
-  for (const[key,value] of Object.entries(response)){
-    if (targetCurrency === key){
-      rate = value; 
-      return rate; 
-    } else {
-      rate = 0; 
-  }
-}}
+  if (response === undefined){ 
+    rate = undefined;
+  } else{
+    for (const[key,value] of Object.entries(response)){
+      if (targetCurrency === key){
+        rate = value; 
+        return rate;
+        }
+      }
+    }
+}
 
 //UI Logic
 async function generateConversion(event){
@@ -25,14 +28,14 @@ async function generateConversion(event){
   const amount =  document.getElementById('amount').value;
   const targetCurrency = document.getElementById('targetCurrency').value; 
 
-  let currentRateForUSD = getCurrencyRate(targetCurrency, newUSDRate); 
+  let currentRateForUSD = getCurrencyRate(targetCurrency, newUSDRate.conversion_rates); 
 
   newExchangeRequest = new exchangeProfile(amount,targetCurrency); 
 
-  if (currentRateForUSD === undefined){
-    document.getElementById('convertedAmount').innerText = "Please enter a supported currency.";
-  } else if (currentRateForUSD > 0){
+  if  (newUSDRate.result === 'success' && currentRateForUSD !== undefined){
     document.getElementById('convertedAmount').innerText = ((newExchangeRequest.handleConversion(amount,currentRateForUSD)).toFixed(2)) + " " + targetCurrency;
+  } else if (newUSDRate.result === 'success' && currentRateForUSD === undefined){
+    document.getElementById('convertedAmount').innerText = "Please enter a supported currency";
   } else {
     document.getElementById('convertedAmount').innerText = printError(newUSDRate);
   }
@@ -48,4 +51,5 @@ window.addEventListener("load", function() {
 
   const form  = document.getElementById("conversionForm"); 
   form.addEventListener("submit", generateConversion);
-});
+  }
+);
